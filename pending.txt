@@ -1,0 +1,42 @@
+Terminar pruebas unitarias x
+docker compose x
+Crear setupTest.ts, servidor de prueba y archivo .env.test x
+Organizar README con una imagen del folder que se siguio, tecnologias y patrones x
+dependbot y renovatebot x
+seed de prisma x
+healh module x
+caching x (No es necesario ya que es algo complejo y se deben de tener algunos puntos en cuenta para decidir si implmentarlo)
+VER PARA QUE SRIVE .NVMRC, x
+keep alive x
+Prettier x
+eslint x
+prettier que se manejen profesionalmente X
+HUSKY CONFIGURACION Y USO x
+Probar el middleware de errores x
+Hacer pruebas de integracion x
+Dockerfile x
+.VSCODE
+
+readme poner los pasos de docker
+Configuracion de tsconfig 
+Posibles configuraciones de tsconfig, ver porque hay un tsconfi.build y el normal
+Pasar a esmodule
+Ver lo de dockerizacion para despligue
+Serializacion y deserializacion (Se hizo en nest)
+Pruebas de Seguridad: Comprueba la seguridad de la API, asegurándote de que solo usuarios autorizados puedan acceder a los recursos.
+Hacer autentificacion y autorizacion implementar cashing (Cachear datos de la sesión de un usuario en una aplicación web para evitar consultas repetidas a la base de datos.)
+Crear Pipeline CI (Solo ha corrido el de test averiguar como correr los otros)
+Git actions bot y semantic-release-bot
+Reglas de eslint
+Montar a linkedin x
+
+Las pruebas con supertest para e2e no funcionan en la dockerizacion
+
+
+
+
+
+buildx x
+multistages x
+compose y uso de los stages, como tambien la generaion de imagen de prod por compose X
+Ejecutar la aplicación con el build de docker compose build

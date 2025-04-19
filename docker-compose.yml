@@ -1,0 +1,30 @@
+#version: '3.9' #ya no es necesaria
+
+services:
+  db:
+    container_name: coordinadora_db
+    image: postgres:14.15-alpine3.20
+    restart: always #en caso de errores o paros, se reinicia
+    volumes:
+      - ./db/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - 5432:5432
+
+  pgAdmin:
+    container_name: pgAdmin_coordinadora
+    image: dpage/pgadmin4
+    depends_on:
+      - db
+    restart: always
+    volumes:
+     - ./db/pgadmin:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_LISTEN_PORT: ${PGADMIN_LISTEN_PORT}
+    ports:
+      - 8080:80
