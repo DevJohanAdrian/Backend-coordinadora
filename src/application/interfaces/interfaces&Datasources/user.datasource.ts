@@ -1,4 +1,4 @@
-import type { CreateUserDto, UpdateUserDto, RefreshTokenDto, SignInUserDto } from '@/application/dtos';
+import type { CreateUserDto, UpdateUserDto, RefreshTokenDto, SignInUserDto, RefreshTokenCookieDto } from '@/application/dtos';
 import type { UserEntity } from '@/domain';
 
 export abstract class UserDatasource {
@@ -8,4 +8,5 @@ export abstract class UserDatasource {
   abstract getById(id: number): Promise<UserEntity>;
   abstract saveRefreshToken(refreshTokenDto: RefreshTokenDto): Promise<UserEntity>;
   abstract login(signInUserDto: SignInUserDto): Promise<UserEntity | null>;
+  abstract refreshToken(refreshTokenDto: RefreshTokenCookieDto): Promise<UserEntity | null>;
 }

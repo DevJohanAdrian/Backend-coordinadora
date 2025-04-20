@@ -78,13 +78,12 @@ export class UserRoutes {
 
 
 
+
     router.post('/signup', validateRequest(SignUpSchema), userContoller.createUser)
 
     router.post('/signin', validateRequest(SignInSchema), userContoller.signIn)
 
-    // router.get('/session', verifyToken, userContoller.session)
-
-    // router.get('/refresh-token', userContoller.refreshToken)
+    router.get('/refresh-token', userContoller.refreshToken)
 
 
     return router;

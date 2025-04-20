@@ -1,7 +1,7 @@
 import type { CreateUserDto } from '@/application/dtos';
 import type { UserRepository } from '@/application/interfaces';
 import type { UserEntity } from '@/domain';
-import { createToken, encryptPassword } from '@/presentation/express/common/utils';
+import { createToken, encryptPassword, createRefreshToken } from '@/presentation/express/common/utils';
 import type { EmailService } from '@/application/services/EmailService';
 import { CustomError } from '@/application/customErrors/errors';
 
@@ -30,12 +30,13 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 
     // Generar token JWT
     const token = await createToken(user.id.toString());
+    const refreshToken = await createRefreshToken(user.id.toString());
 
     // se actualiza el usuario
-    const userUpdated = await this.userRepository.updateById({ id: user.id, token: token, nombres: null, apellidos: null, email: null, password: null, refreshToken: null });
+    const userUpdated = await this.userRepository.updateById({ id: user.id, token: token, nombres: null, apellidos: null, email: null, password: null, refreshToken: refreshToken });
     // Enviar correo de confirmación
     await this.emailService.sendRegistrationConfirmation(user.email, user.nombres);
     // Responder con el modelo esperado por el frontend
-    return { ...user, token };
+    return { ...user };
   }
 }

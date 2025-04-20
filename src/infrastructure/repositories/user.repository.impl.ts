@@ -1,4 +1,4 @@
-import type { CreateUserDto, UpdateUserDto, RefreshTokenDto, SignInUserDto } from '@/application/dtos';
+import type { CreateUserDto, UpdateUserDto, RefreshTokenDto, SignInUserDto, RefreshTokenCookieDto } from '@/application/dtos';
 import type { UserDatasource, UserRepository } from '@/application/interfaces/index';
 import type { UserEntity } from '@/domain';
 
@@ -17,7 +17,9 @@ export class UserRepositoryImpl implements UserRepository {
   getById(id: number): Promise<UserEntity> {
     return this.userDatastore.getById(id);
   }
-
+  refreshToken(refreshTokenDto: RefreshTokenCookieDto): Promise<UserEntity | null> {
+    return this.userDatastore.refreshToken(refreshTokenDto);
+  }
   login(signInUserDto: SignInUserDto): Promise<UserEntity | null> {
     return this.userDatastore.login(signInUserDto);
   }

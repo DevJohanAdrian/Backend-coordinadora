@@ -1,4 +1,4 @@
-import type { CreateUserDto, UpdateUserDto, RefreshTokenDto, SignInUserDto } from '@/application/dtos';
+import type { CreateUserDto, UpdateUserDto, RefreshTokenDto, SignInUserDto, RefreshTokenCookieDto } from '@/application/dtos';
 import type { UserDatasource } from '@/application/interfaces';
 import type { UserEntity } from '@/domain';
 import { CustomGeneralError } from '@/domain/customErrors/customGeneral.error';
@@ -80,6 +80,13 @@ export class UserDatasourceImpl implements UserDatasource {
     const user = await pgPool.query('SELECT * FROM users WHERE id = $1', [id]);
 
     if (!user.rows[0]) throw new CustomGeneralError(`User with id: ${id} not found`, 404);
+    return UserMapper.toDomain(user.rows[0]);
+  }
+
+  async refreshToken(refreshTokenDto: RefreshTokenCookieDto): Promise<UserEntity | null> {
+    const user = await pgPool.query('SELECT * FROM users WHERE refresh_token = $1', [refreshTokenDto.jwt]);
+
+    if (!user.rows[0]) throw new CustomGeneralError(`User with refresh token: ${refreshTokenDto.jwt} not found`, 404);
     return UserMapper.toDomain(user.rows[0]);
   }
 

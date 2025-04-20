@@ -43,7 +43,7 @@ class Server {
     //* Middlewares
     this.app.use(express.json()); // raw
     this.app.use(express.urlencoded({ extended: true })); // x-www-form-urlencoded
-    this.app.use(cors({ origin: env.CORS_ORIGIN, credentials: true }));
+    this.app.use(cors({ origin: env.CORS_ORIGIN, credentials: true , allowedHeaders: ['Content-Type', 'Authorization', 'x-access-token', 'refresh']}));
     this.app.use(helmet());
     this.app.use(rateLimiter);
     this.app.use(compression());
@@ -93,26 +93,7 @@ class Server {
   }
 
   public close() {
-    // const onCloseSignal = () => {
-    //   logger.info('SIGINT or SIGTERM received, shutting down...');
-
-    //   // console.log('SIGINT or SIGTERM received, shutting down...');
-
-    //   // Cerrar el servidor de manera controlada
-    //   this.server.close(() => {
-    //     logger.info('Server closed');
-
-    //     // console.log('Server closed');
-    //     process.exit(0); // Salida exitosa
-    //   });
-
-    //   // Forzar cierre después de 10 segundos si no ha cerrado completamente
-    //   setTimeout(() => process.exit(1), 10000).unref();
-    // };
-
-    // // Escuchar las señales SIGINT y SIGTERM
-    // process.on('SIGINT', onCloseSignal);
-    // process.on('SIGTERM', onCloseSignal);
+ 
 
     if (this.server) {
       this.server.close(err => {
