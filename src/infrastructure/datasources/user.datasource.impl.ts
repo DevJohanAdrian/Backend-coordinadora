@@ -2,7 +2,7 @@ import type { CreateUserDto, UpdateUserDto, RefreshTokenDto, SignInUserDto, Refr
 import type { UserDatasource } from '@/application/interfaces';
 import type { UserEntity } from '@/domain';
 import { CustomGeneralError } from '@/domain/customErrors/customGeneral.error';
-import { UserMapper } from '@/infrastructure/mappers/users/user.mapper';
+import { UserMapper } from '@/infrastructure/mappers/user.mapper';
 import { pgPool } from '@/infrastructure/services/postgres.client';
 
 export class UserDatasourceImpl implements UserDatasource {
@@ -89,5 +89,6 @@ export class UserDatasourceImpl implements UserDatasource {
     if (!user.rows[0]) throw new CustomGeneralError(`User with refresh token: ${refreshTokenDto.jwt} not found`, 404);
     return UserMapper.toDomain(user.rows[0]);
   }
+
 
 }

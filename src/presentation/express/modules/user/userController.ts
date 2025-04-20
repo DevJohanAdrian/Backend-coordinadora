@@ -27,12 +27,11 @@ export class UserContoller {
     const emailService = new NodeMailerEmailService();
     // Pasar el servicio al caso de uso
     const userEntity = await new CreateUserUseCase(this.userRepository, emailService).execute({ nombres, apellidos, email, password });
-    console.log("usercreado",userEntity);
     if (userEntity) {
       res.cookie('jwt', userEntity.refreshToken, { httpOnly: true, secure: true, sameSite: 'none', path: '/', maxAge: 24 * 60 * 60 * 1000 /** 24 horas */ })
     }
     // Responder con el modelo esperado por el frontend
-    res.json({ id: userEntity.id, nombres: userEntity.nombres, apellidos: userEntity.apellidos, email: userEntity.email, token: userEntity.token }).status(201);
+    res.json({ id: userEntity.id, nombres: userEntity.nombres, apellidos: userEntity.apellidos, email: userEntity.email, token: userEntity.token, isAdmin: userEntity.isAdmin }).status(201);
   })
 
   /**
@@ -49,7 +48,7 @@ export class UserContoller {
     if (user) {
       res.cookie('jwt', user.refreshToken, { httpOnly: true, secure: true, sameSite: 'none', path: '/', maxAge: 24 * 60 * 60 * 1000 /** 24 horas */ })
     }
-    res.json({ id: user?.id, nombres: user?.nombres, apellidos: user?.apellidos, email: user?.email, token: user?.token }).status(200);
+    res.json({ id: user?.id, nombres: user?.nombres, apellidos: user?.apellidos, email: user?.email, token: user?.token, isAdmin: user?.isAdmin }).status(200);
   })
 
   /**

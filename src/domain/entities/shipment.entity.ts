@@ -11,6 +11,8 @@ export class ShipmentEntity {
       public width: number,
       public length: number,
       public userId: number | null, // para asociar con el usuario autenticado
-      public status: string
+      public status: string,
+      public rutaId: number | null,
+      public carrierId: number | null,
     ) {}
   }

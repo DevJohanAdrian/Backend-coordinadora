@@ -6,7 +6,8 @@ export class UserEntity {
     public email: string,
     public password: string, 
     public token: string | null,
-    public refreshToken: string | null
+    public refreshToken: string | null,
+    public isAdmin: boolean,
   ) {
     // if (id === undefined || name === undefined) {
     //     throw new Error('Invalid parameters: id and name are required.');

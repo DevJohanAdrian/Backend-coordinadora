@@ -12,3 +12,15 @@ export const ShipmentSchema = z.object({
   length: z.number({ required_error: 'El largo es requerido', invalid_type_error: 'El largo debe ser numérico' }).positive('El largo debe ser positivo'),
   status: z.string({ required_error: 'El estado es requerido' }),
 });
+
+export const AssignShipmentSchema = z.object({
+  routeId: z.number({ required_error: 'El id de la ruta es requerido' }),
+  carrierId: z.number({ required_error: 'El id del carrier es requerido' }),
+});
+
+export const ShipmentQueryParamsSchema = z.object({
+  status: z.string({ required_error: 'El estado es requerido' }).optional(),
+  routeId: z.number({ required_error: 'El id de la ruta es requerido' }).optional(),
+  carrierId: z.number({ required_error: 'El id del carrier es requerido' }).optional(),
+});
+

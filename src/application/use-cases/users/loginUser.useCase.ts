@@ -39,7 +39,7 @@ export class LoginUseCase implements ILoginUseCase {
         const refreshToken = await createRefreshToken(user.id.toString())
         await new SaveRefreshTokenUseCase(this.UserRepository).execute({ refreshToken: refreshToken, userId: user.id});
 
-        return { token, refreshToken, id: user.id, nombres: user.nombres, apellidos: user.apellidos, email: user.email, password: user.password };
-
+        return { token, refreshToken, id: user.id, nombres: user.nombres, apellidos: user.apellidos, email: user.email, password: user.password, isAdmin: user.isAdmin };
+;
     }
 }
