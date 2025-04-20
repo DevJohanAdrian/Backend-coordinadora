@@ -20,8 +20,6 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 
   async execute(createUserDto: CreateUserDto): Promise<UserEntity> {
     const userExist = await this.userRepository.login(createUserDto);
-
-
     if (userExist) {
         throw new CustomError('Este correo ya esta registrado.');
     }

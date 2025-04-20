@@ -1,5 +1,5 @@
-import { UserDatasourceImpl } from '@/infrastructure/datasources/users/user.datasource.impl';
-import { UserRepositoryImpl } from '@/infrastructure/repositories/users/user.repository.impl';
+import { UserDatasourceImpl } from '@/infrastructure/datasources/user.datasource.impl';
+import { UserRepositoryImpl } from '@/infrastructure/repositories/user.repository.impl';
 import { OpenAPIRegistry } from '@asteasolutions/zod-to-openapi';
 import { createApiResponse } from '@presentation/express/api-docs/openAPIResponseBuilders';
 import { validateRequest } from '@presentation/express/common/utils';

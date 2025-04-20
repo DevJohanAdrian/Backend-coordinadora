@@ -24,6 +24,9 @@ const env = cleanEnv(process.env, {
     devDefault: testOnly(
       'postgresql://super_admin:123456@localhost:5432/coordinadora'
     )
+  }),
+  GOOGLE_MAPS_API_KEY: str({
+    devDefault: testOnly('AIzaSyAfwhUYuB4AVkx21DofpS_i25GXMusVfjU')
   })
 });
 

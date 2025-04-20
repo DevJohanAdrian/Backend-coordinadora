@@ -9,6 +9,7 @@ import cors from 'cors';
 import express, { type Router, type Express } from 'express';
 import helmet from 'helmet';
 import { pino } from 'pino';
+import cookieParser from 'cookie-parser';
 
 import { type Server as HttpServer, createServer } from 'node:http'; // Para crear el servidor HTTP
 // import path from 'node:path';
@@ -46,6 +47,7 @@ class Server {
     this.app.use(helmet());
     this.app.use(rateLimiter);
     this.app.use(compression());
+    this.app.use(cookieParser());
 
     //* Request logging
     this.app.use(requestLogger);

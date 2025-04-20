@@ -28,8 +28,7 @@ export class UserContoller {
     const userEntity = await new CreateUserUseCase(this.userRepository, emailService).execute({ nombres, apellidos, email, password });
  
     // Responder con el modelo esperado por el frontend
-    console.log("userEntityresult",userEntity)
-    res.json({ id: userEntity.id, nombres: userEntity.nombres, apellidos: userEntity.apellidos, email: userEntity.email, token: userEntity.token }).status(200);
+    res.json({ id: userEntity.id, nombres: userEntity.nombres, apellidos: userEntity.apellidos, email: userEntity.email, token: userEntity.token }).status(201);
   })
 
   /**
@@ -41,9 +40,8 @@ export class UserContoller {
    */
   public signIn = handleCatchErrorAsync(async (req: Request, res: Response) => {
     const { email, password } = req.body;
-    console.log("si entre", email, password);
     const user = await new LoginUseCase(this.userRepository).execute({ email, password });
-    res.json(user).status(201);
+    res.json(user).status(200);
   })
 
 
