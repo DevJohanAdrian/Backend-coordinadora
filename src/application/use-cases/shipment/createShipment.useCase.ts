@@ -2,7 +2,7 @@ import { ShipmentRepository } from '@/application/interfaces'
 import { CreateShipmentDto } from '@/application/dtos/shipment/createShipmentDto'
 import { ShipmentEntity } from '@/domain/entities/shipment.entity'
 import { AddressValidator } from '@/application/services/addressValidator';
-;
+
 export interface ICreateShipmentUseCase {
   execute(createShipmentDto: CreateShipmentDto): Promise<ShipmentEntity>;
 }
@@ -17,10 +17,10 @@ export class CreateShipmentUseCase implements ICreateShipmentUseCase {
   // }
 
   async execute(dto: CreateShipmentDto) {
-    const isValid = await this.addressValidator.validateAddress(
+    await this.addressValidator.validateAddress(
       `${dto.street}, ${dto.city}, ${dto.state}, ${dto.zipCode}`
     );
-    if (!isValid) throw new Error('Dirección inválida según Google Maps');
+    
     return this.shipmentRepo.create(dto);
   }
 }
